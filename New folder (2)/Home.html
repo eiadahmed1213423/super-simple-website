@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DevPros - Technology</title>
+  <script src="https://kit.fontawesome.com/1165876da6.js" crossorigin="anonymous"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Kanit:wght@300;400;700&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(135deg, #0f0022, #020c2d);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .split-background {
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(120deg, rgba(98, 0, 234, 0.4), rgba(3, 218, 197, 0.3));
+      z-index: -1;
+      filter: blur(50px);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 10%;
+      position: relative;
+      gap: 30px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 12px #00bcd4;
+    }
+
+    .nav-buttons {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+    }
+
+    .nav-buttons a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 10px 17px;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.4);
+      transition: background 0.3s ease;
+      position: absolute;
+      right: 10px;
+    }
+
+    .nav-buttons a:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .dropdown {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      background: rgba(30, 30, 60, 0.95);
+      min-width: 140px;
+      box-shadow: 0 0 10px rgba(0, 191, 255, 0.2);
+      border-radius: 8px;
+      top: 30px;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 10px;
+      color: white;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    .dropdown-menu a:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    .content-wrapper {
+      display: flex;
+      padding-top: 100px;
+      flex-direction: column;
+      align-items: center;
+      min-height: 130vh;
+    }
+
+    .product-showcase {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 80%;
+      gap: 6%;
+      margin-top: 60px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 32px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.04);
+    }
+
+    .product-showcase img {
+      max-width: 360px;
+      width: 100%;
+      animation: fadeInUp 1s ease-out forwards;
+      opacity: 0;
+      transition: transform 0.5s ease;
+    }
+
+    .product-showcase img:hover {
+      transform: scale(1.05) rotate(-1deg);
+    }
+
+    .product-showcase .text {
+      max-width: 580px;
+    }
+
+    .product-showcase h1 {
+      font-size: 2.2rem;
+      background: linear-gradient(90deg, #f0f, #0ff, #f0f);
+      background-size: 200%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: animateText 6s linear infinite;
+    }
+
+    .product-showcase p {
+      font-size: 1.15rem;
+      color: #ddd;
+      text-shadow: 0 0 8px #8800ff;
+    }
+
+    .partners-section {
+      margin-top: 80px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .partners-section h2 {
+      font-size: 1.6rem;
+      letter-spacing: 1px;
+      text-shadow: 0 0 8px #00e5ff;
+    }
+
+    .slider {
+      width: 400px;
+      height: 100px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(8px);
+      padding: 20px;
+      margin: 0 auto;
+      border-radius: 16px;
+      box-shadow: 0 0 18px rgba(0, 0, 0, 0.6);
+    }
+
+    .slider-container {
+      display: flex;
+      width: 500%;
+      animation: scrollOneLogo 16s linear infinite;
+    }
+
+    .slider img {
+      width: 400px;
+      height: 60px;
+      object-fit: contain;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.3));
+      transition: transform 0.5s;
+    }
+
+    .slider img:hover {
+      transform: scale(1.1);
+    }
+
+    .chat-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #00bcd4;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 0 12px #00bcd4;
+    }
+
+    @keyframes scrollOneLogo {
+      0% { transform: translateX(0); }
+      12.5% { transform: translateX(-400px); }
+      25% { transform: translateX(-800px); }
+      37.5% { transform: translateX(-1200px); }
+      50% { transform: translateX(-1600px); }
+      62.5% { transform: translateX(-2000px); }
+      75% { transform: translateX(-2400px); }
+      87.5% { transform: translateX(-2800px); }
+      100% { transform: translateX(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes animateText {
+      0% { background-position: 0%; }
+      100% { background-position: 200%; }
+    }
+
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ffffff;
+      text-decoration: none;
+      z-index: 10;
+      padding: 8px 14px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="split-background"></div>
+
+  <nav class="navbar">
+    <a class="logo" href="#">DevPros</a>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <div class="dropdown">
+        <a href="#">Products</a>
+        <div class="dropdown-menu">
+          <a href="#">Laptops</a>
+          <a href="#">Accessories</a>
+          <a href="#">Software</a>
+        </div>
+      </div>
+      <a href="#">Contact</a>
+    </div>
+  </nav>
+
+  <div class="nav-buttons">
+    <a href="loginpage.html">Logout</a>
+  </div>
+
+  <div class="content-wrapper">
+    <div class="product-showcase">
+      <img src="Lenovo-IdeaPad-Pro-5_processed.webp" alt="Laptop" />
+      <div class="text">
+        <h1>Discover Our Latest Technology</h1>
+        <p>Experience the pinnacle of portable power with our innovative laptop solutions.</p>
+      </div>
+    </div>
+
+    <div class="partners-section">
+      <h2>Our Partners</h2>
+      <div class="slider">
+        <div class="slider-container">
+          <img src="rog asus.svg" alt="Partner 1">
+          <img src="8hjmcte754uauw07ypikjkjtx0m5ib450914.svg" alt="Partner 2">
+          <img src="acer-4.svg" alt="Partner 3">
+          <img src="logo.png" alt="Partner 4">
+          <img src="rog asus.svg" alt="Partner 1 Copy">
+          <img src="8hjmcte754uauw07ypikjkjtx0m5ib450914.svg" alt="Partner 2 Copy">
+          <img src="acer-4.svg" alt="Partner 3 Copy">
+          <img src="logo.png" alt="Partner 4 Copy">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="chat-btn"><i class="fas fa-comment-dots"></i></button>
+
+</body>
+</html>

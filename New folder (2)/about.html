@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('photo-1498050108023-c5249f4df085 (1)_1920x1278.jpeg');
+            background-size: contain; /* Ensures image doesn't exceed website size */
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            height: 100vh; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+        }
+
+        .navbar {
+            width: 100%;
+            background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 100%);
+            padding: 15px 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+            position: fixed;
+            top: 0;
+            z-index: 20;
+            backdrop-filter: blur(15px);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .navbar:hover {
+            background: linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 100%);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.9);
+        }
+
+        .navbar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar ul li {
+            margin: 0 20px;
+        }
+
+        .navbar a {
+            color: #f0f0f0;
+            text-decoration: none;
+            padding: 12px 25px;
+            display: block;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: 500;
+            transition: color 0.3s, transform 0.3s, background 0.3s;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+        }
+
+        .navbar a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s;
+            transform: translate(-50%, -50%) scale(0);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .navbar a:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .navbar a:hover {
+            color: #ffd700; /* Gold color on hover */
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .content {
+            text-align: center;
+            max-width: 800px;
+            margin-top: 120px;
+            padding: 30px;
+            background-color: rgba(0, 0, 0, 0.9); 
+            border-radius: 15px;
+            animation: fadeIn 1s ease-out;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8);
+            position: relative;
+        }
+
+        .content::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: calc(100% - 20px);
+            height: calc(100% - 20px);
+            background: linear-gradient(45deg, rgba(255, 215, 0, 0.2), rgba(0, 255, 255, 0.2));
+            border-radius: 15px;
+            z-index: -1;
+            filter: blur(10px);
+            opacity: 0.5;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+        }
+
+        h2 {
+            font-size: 2.8em;
+            margin-top: 20px;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+        }
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="Home.html">Home</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <h1>About Us</h1>
+        <p>Welcome to [TITSOLUTIONS], where technology meets innovation!</p>
+
+        <p>In a world driven by bytes and pixels, we stand at the forefront of cutting-edge solutions that push the boundaries of what’s possible. Our team of tech enthusiasts is passionate about transforming ideas into reality, leveraging the latest advancements in AI, machine learning, and cloud computing to create products that not only meet but exceed expectations.</p>
+
+        <h2>Why We're Different</h2>
+        <p><strong>Innovation First:</strong> We don’t just follow trends; we set them. Our approach is to always look for the next big thing, ensuring that we stay ahead of the curve in a rapidly evolving industry.</p>
+
+        <p><strong>Expertise You Can Trust:</strong> With years of experience under our belt, we’ve honed our skills in a variety of tech disciplines, making us the go-to partner for businesses looking to make a mark in the digital landscape.</p>
+
+        <p><strong>User-Centric Design:</strong> Our technology is built with you in mind. We focus on creating seamless, intuitive experiences that make life easier and more enjoyable for our users.</p>
+
+        <p><strong>Commitment to Excellence:</strong> Every line of code we write is a step towards perfection. We believe in doing things right the first time, ensuring that our solutions are reliable, efficient, and future-proof.</p>
+
+        <h2>Our Vision</h2>
+        <p>At [TITSOLUTIONS], our vision is to be the catalyst for change in the tech world. We are committed to driving progress and helping businesses harness the full potential of technology.</p>
+    </div>
+</body>
+</html>
