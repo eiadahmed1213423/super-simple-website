@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-image: url('eiad233.jpeg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80%;
+            max-width: 1200px;
+            position: relative;
+        }
+
+        .contact-right {
+            flex: 1;
+        }
+
+        .contact-container {
+            flex: 1;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px; 
+            margin: auto; 
+        }
+
+        .contact-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .contact-left-title {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin: 0;
+            color: black;
+            text-align: center;
+        }
+
+        hr {
+            width: 50%;
+            border: 1px solid black;
+            margin: 10px 0;
+        }
+
+        .contact-inputs {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            position: relative;
+            right: 1%;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center; 
+        }
+
+        button {
+            padding: 10px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease-in-out;
+            flex: 1;
+            
+        }
+
+        button:hover {
+            box-shadow: 0 0 10px rgb(255, 0, 0);
+        }
+
+        button img {
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+
+        .home-button {
+            background-color: rgb(0, 0, 0);
+        }
+
+        .home-button:hover {
+            box-shadow: 0 0 10px rgb(255, 255, 0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="contact-container">
+            <div class="contact-header">
+                <h2>Get in touch</h2>
+                <hr>
+            </div>
+            <div class="contact-right">
+                <form>
+                    <input type="text" name="name" placeholder="Your name" class="contact-inputs" required>
+                    <input type="email" name="email" placeholder="Your Email" class="contact-inputs" required>
+                    <input name="message" placeholder="Your message" class="contact-inputs" required></textarea>
+                    <div class="buttons"> 
+                        <button type="submit">Submit <img src="arrow_icon.png" alt=""></button>
+                        <button type="button" class="home-button" onclick="window.location.href='home.html'">Go to Homepage</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

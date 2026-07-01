@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>DevPros | Contact Nexus</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0a0a0f;
+      background-image: radial-gradient(circle at 25% 40%, rgba(30, 30, 55, 0.4) 0%, #0a0a0f 90%);
+      font-family: 'Inter', sans-serif;
+      color: #eceff4;
+      line-height: 1.5;
+    }
+
+    .noise-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.05;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+    }
+
+    .app-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 1.8rem 3rem 5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(80, 100, 140, 0.35);
+      backdrop-filter: blur(2px);
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: baseline;
+      gap: 0.2rem;
+    }
+
+    .brand {
+      font-size: 1.9rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #FFFFFF 0%, #93a9ff 80%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 12px rgba(80, 140, 255, 0.2);
+    }
+
+    .brand-light {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #b9c8ff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #e0e7ff;
+      font-size: 1rem;
+      transition: 0.2s ease;
+      letter-spacing: 0.3px;
+    }
+
+    .nav-links a:hover {
+      color: white;
+      text-shadow: 0 0 6px #5f8eff;
+    }
+
+    .logout-btn {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      border: 1px solid rgba(95, 142, 255, 0.5);
+      transition: all 0.2s;
+    }
+
+    .logout-btn:hover {
+      background: rgba(95, 142, 255, 0.2);
+      border-color: #8aaeff;
+    }
+
+    .hero-section {
+      margin-bottom: 4rem;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(80, 110, 200, 0.18);
+      backdrop-filter: blur(4px);
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      border: 1px solid rgba(80, 140, 255, 0.35);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-size: 3.6rem;
+      font-weight: 800;
+      line-height: 1.2;
+      background: linear-gradient(to right, #ffffff, #bac8ff, #8ba5ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      max-width: 700px;
+    }
+
+    .hero-desc {
+      font-size: 1.2rem;
+      color: #b9c7e6;
+      max-width: 550px;
+      margin-top: 1rem;
+      border-left: 3px solid #5f8eff;
+      padding-left: 1.2rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 3rem;
+      margin-top: 1rem;
+    }
+
+    .info-panel {
+      background: rgba(12, 16, 28, 0.6);
+      backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      border: 1px solid rgba(70, 110, 200, 0.35);
+      padding: 2rem 2rem 2.2rem;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s ease, border-color 0.2s;
+    }
+
+    .info-panel:hover {
+      border-color: rgba(95, 142, 255, 0.7);
+    }
+
+    .panel-title {
+      font-size: 1.7rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      letter-spacing: -0.3px;
+      background: linear-gradient(135deg, #fff, #bdd0ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.6rem 0;
+    }
+
+    .contact-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(80, 110, 220, 0.2);
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: #8aaeff;
+      border: 1px solid rgba(95, 142, 255, 0.5);
+    }
+
+    .contact-text h4 {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-text p, .contact-text a {
+      color: #b6c6f0;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .contact-text a:hover {
+      color: white;
+    }
+
+    .social-row {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(80, 110, 220, 0.3);
+    }
+
+    .social-icon {
+      background: rgba(20, 28, 45, 0.7);
+      width: 44px;
+      height: 44px;
+      border-radius: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: #b0c4ff;
+      transition: all 0.2s;
+      border: 1px solid rgba(95, 142, 255, 0.3);
+    }
+
+    .social-icon:hover {
+      background: #5f8eff20;
+      color: white;
+      border-color: #8aaeff;
+      transform: translateY(-3px);
+    }
+
+    .form-panel {
+      background: rgba(8, 12, 22, 0.7);
+      backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      border: 1px solid rgba(70, 110, 200, 0.4);
+      padding: 2rem;
+    }
+
+    .input-group {
+      margin-bottom: 1.4rem;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+      color: #a6bbf5;
+    }
+
+    .input-group input, .input-group textarea {
+      width: 100%;
+      background: rgba(15, 20, 35, 0.7);
+      border: 1px solid #2a3455;
+      border-radius: 18px;
+      padding: 0.9rem 1.2rem;
+      font-family: 'Inter', monospace;
+      font-size: 1rem;
+      color: #f0f4ff;
+      transition: all 0.2s;
+      outline: none;
+    }
+
+    .input-group input:focus, .input-group textarea:focus {
+      border-color: #5f8eff;
+      box-shadow: 0 0 12px rgba(95, 142, 255, 0.2);
+      background: rgba(20, 28, 48, 0.9);
+    }
+
+    .input-group textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .submit-btn {
+      background: linear-gradient(95deg, #2b3b6e, #1b2a55);
+      border: 1px solid #5f8eff;
+      padding: 0.9rem 2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: white;
+      width: 100%;
+      cursor: pointer;
+      transition: 0.25s;
+      margin-top: 0.5rem;
+      letter-spacing: 0.5px;
+    }
+
+    .submit-btn:hover {
+      background: linear-gradient(95deg, #3a4e88, #2b3a6e);
+      border-color: #8aaeff;
+      box-shadow: 0 6px 18px rgba(0, 80, 255, 0.2);
+      transform: scale(0.99);
+    }
+
+    .form-status {
+      margin-top: 1.2rem;
+      font-size: 0.85rem;
+      text-align: center;
+      color: #9acdff;
+    }
+
+    .feature-quote {
+      margin-top: 3rem;
+      padding: 1.5rem 2rem;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 2rem;
+      border-left: 4px solid #5f8eff;
+      font-style: normal;
+      font-weight: 400;
+    }
+
+    .feature-quote p {
+      font-size: 0.95rem;
+      color: #bfd0ff;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .feature-quote i {
+      font-size: 1.6rem;
+      color: #5f8eff;
+    }
+
+    @media (max-width: 880px) {
+      .app-container {
+        padding: 1.5rem 1.8rem 3rem;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+      .info-panel, .form-panel {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="noise-bg"></div>
+<div class="app-container">
+  <nav class="navbar">
+    <div class="logo-area">
+      <span class="brand">DevPros</span>
+      <span class="brand-light"></span>
+    </div>
+    <div class="nav-links">
+      <a href="#">About</a>
+      <a href="products.html">Products</a>
+      <a href="#" style="color:white; text-shadow:0 0 4px #5f8eff;">Contact</a>
+      <a href="LoginPage.html" class="logout-btn">Logout</a>
+    </div>
+  </nav>
+
+  <div class="hero-section">
+    <div class="hero-badge">
+      <i class="fas fa-plug" style="margin-right: 6px;"></i> CONNECT WITH INNOVATION
+    </div>
+    <h1 class="hero-title">Reach the<br>core of tech.</h1>
+    <div class="hero-desc">
+      Our team architects the future of portable power and next‑gen laptops. Let's build something extraordinary.
+    </div>
+  </div>
+
+  <div class="contact-grid">
+    <div class="info-panel">
+      <div class="panel-title">
+        <i class="fas fa-satellite-dish" style="font-size: 1.4rem; margin-right: 8px;"></i> Nexus point
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="contact-text">
+          <h4>Innovation hub</h4>
+          <p>183 gesr el suez<br>cairo egypt</p>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+        <div class="contact-text">
+          <h4>Direct link</h4>
+          <a href="mailto:contact@devpros.tech">contact@devpros.tech</a>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon"><i class="fas fa-headset"></i></div>
+        <div class="contact-text">
+          <h4>Pro support</h4>
+          <p>01094209951<br>Available 24/7 for enterprise</p>
+        </div>
+      </div>
+      <div class="social-row">
+
+    <a href="#" class="social-icon" title="Discord">
+        <i class="fab fa-discord"></i>
+    </a>
+
+    <a href="#" class="social-icon" title="GitHub">
+        <i class="fab fa-github"></i>
+    </a>
+
+    <a href="#" class="social-icon" title="Twitter">
+    <i class="fab fa-twitter"></i>
+    </a>
+
+    <a href="https://www.linkedin.com/in/eiad-taha-a6a199319"
+    class="social-icon"
+    target="_blank"
+    title="LinkedIn">
+    <i class="fab fa-linkedin-in"></i>
+    </a>
+
+</div>
+    </div>
+
+    <div class="form-panel">
+      <div class="panel-title" style="font-size: 1.4rem; margin-bottom: 1.4rem;">
+        <i class="fas fa-paper-plane"></i> Send a signal
+      </div>
+      <form id="contactForm">
+        <div class="input-group">
+          <label><i class="far fa-user"></i> Full name</label>
+          <input type="text" id="name" placeholder="Eiad Ahmed" required>
+        </div>
+        <div class="input-group">
+          <label><i class="far fa-envelope"></i> Email address</label>
+          <input type="email" id="email" placeholder="hello@devpros.com" required>
+        </div>
+        <div class="input-group">
+          <label><i class="fas fa-microchip"></i> Subject</label>
+          <input type="text" id="subject" placeholder="Laptop collab / support / demo">
+        </div>
+        <div class="input-group">
+          <label><i class="far fa-comment-dots"></i> Message</label>
+          <textarea id="message" placeholder="Share your vision, request a prototype demo, or inquire about our latest technology..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn"><i class="fas fa-bolt"></i> Transmit message</button>
+        <div id="formStatus" class="form-status"></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="feature-quote">
+    <p><i class="fas fa-microchip"></i> “Experience the pinnacle of portable power with our innovative laptop solutions. Built for performance, creativity, and speed — our devices combine futuristic design with cutting-edge hardware.”</p>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const EMAILJS_PUBLIC_KEY = 'naOQIS4BUq5juRfZ8';
+    const EMAILJS_SERVICE_ID = 'service_bw1huke';
+    const EMAILJS_TEMPLATE_ID = 'template_5abb6zb';
+    const RECIPIENT_EMAIL = 'ahtk78@gmail.com';
+    
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+    
+    const form = document.getElementById('contactForm');
+    const statusDiv = document.getElementById('formStatus');
+
+    function showMessage(msg, isError = false) {
+      statusDiv.innerHTML = msg;
+      statusDiv.style.color = isError ? '#ffa994' : '#b2f0b0';
+      setTimeout(() => {
+        if (statusDiv.innerHTML === msg) {
+          statusDiv.style.opacity = '0.6';
+          setTimeout(() => {
+            if (statusDiv.innerHTML === msg) statusDiv.innerHTML = '';
+            statusDiv.style.opacity = '';
+          }, 2000);
+        }
+      }, 2800);
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if (!name || !email) {
+        showMessage('⚠️ Name and email are required.', true);
+        return;
+      }
+      if (!email.includes('@') || !email.includes('.')) {
+        showMessage('📡 Please enter a valid email address.', true);
+        return;
+      }
+
+      const submitBtn = form.querySelector('.submit-btn');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Transmitting...';
+      submitBtn.disabled = true;
+
+      const templateParams = {
+        from_name: name,
+        from_email: email,
+        subject: subject || 'No subject provided',
+        message: message,
+        to_email: RECIPIENT_EMAIL
+      };
+
+      try {
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+        showMessage('✓ Email sent successfully to ' + RECIPIENT_EMAIL + '! We will contact you within 24h.');
+        form.reset();
+      } catch (error) {
+        console.error('EmailJS error:', error);
+        showMessage('❌ Failed to send message. Please try again later.', true);
+      } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }
+    });
+  })();
+</script>
+</body>
+</html>

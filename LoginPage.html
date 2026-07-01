@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>DevPros | Sign In</title>
+  <link rel="icon" href="companylogo_larger_upscaled (1).png" type="image/png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      background: radial-gradient(circle at 20% 30%, #141a2e, #0c1022);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow-x: hidden;
+      padding: 2rem 1.5rem;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(rgba(138, 161, 214, 0.15) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.3;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .orb-1 {
+      width: 300px;
+      height: 300px;
+      background: #5f7fbf;
+      top: -100px;
+      left: -80px;
+    }
+    .orb-2 {
+      width: 400px;
+      height: 400px;
+      background: #2c3f6e;
+      bottom: -120px;
+      right: -100px;
+    }
+    .orb-3 {
+      width: 250px;
+      height: 250px;
+      background: #8aa1d6;
+      top: 40%;
+      right: 5%;
+      opacity: 0.2;
+    }
+
+    .login-card {
+      background: rgba(18, 22, 45, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 2rem;
+      border: 1px solid rgba(138, 161, 214, 0.35);
+      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(138, 161, 214, 0.1) inset;
+      width: 100%;
+      max-width: 480px;
+      padding: 2rem 2rem 2.2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      z-index: 10;
+      animation: fadeUp 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      margin: 0 auto;
+    }
+
+    .login-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(138, 161, 214, 0.25) inset;
+    }
+
+    @keyframes fadeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .brand-header {
+      text-align: center;
+      margin-bottom: 1.8rem;
+      position: relative;
+    }
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: rgba(28, 33, 56, 0.7);
+      padding: 0.5rem 1.5rem;
+      border-radius: 60px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(138, 161, 214, 0.4);
+      margin-bottom: 1rem;
+    }
+    .logo-icon {
+      font-size: 2rem;
+      color: #8aa1d6;
+      filter: drop-shadow(0 0 6px #8aa1d6);
+    }
+    .brand-name {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ffffff 0%, #b7c9ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.3px;
+    }
+    .tagline {
+      font-size: 0.8rem;
+      color: #a0a8ca;
+      letter-spacing: 0.5px;
+      font-weight: 500;
+      margin-top: 6px;
+    }
+
+    .login-illustration {
+      display: flex;
+      justify-content: center;
+      margin: 0.8rem 0 1.2rem;
+    }
+    .icon-circle {
+      background: linear-gradient(145deg, #252b47, #181e38);
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(138, 161, 214, 0.5);
+    }
+    .icon-circle i {
+      font-size: 3.2rem;
+      color: #8aa1d6;
+      filter: drop-shadow(0 2px 6px rgba(138, 161, 214, 0.5));
+    }
+
+    .login-title {
+      text-align: center;
+      font-size: 1.9rem;
+      font-weight: 700;
+      margin: 0.5rem 0 0.5rem;
+      background: linear-gradient(120deg, #ffffff, #b9c6f0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .login-subtitle {
+      text-align: center;
+      color: #9aa3ca;
+      font-size: 0.85rem;
+      margin-bottom: 1.8rem;
+      font-weight: 500;}
+
+    .input-group {
+      margin-bottom: 1.4rem;
+      position: relative;
+    }
+    .input-group i {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #8aa1d6;
+      font-size: 1rem;
+      opacity: 0.8;
+      z-index: 2;
+    }
+    .input-field {
+      width: 100%;
+      padding: 0.9rem 1rem 0.9rem 2.8rem;
+      background: rgba(28, 33, 56, 0.8);
+      border: 1.5px solid rgba(138, 161, 214, 0.3);
+      border-radius: 1.2rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: #f0f3ff;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    .input-field:focus {
+      border-color: #8aa1d6;
+      background: rgba(28, 33, 56, 0.95);
+      box-shadow: 0 0 0 3px rgba(138, 161, 214, 0.2);
+    }
+    .input-field::placeholder {
+      color: #6a73a0;
+      font-weight: 400;
+      font-size: 0.85rem;
+    }
+
+    .login-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 1rem 0 1.6rem;
+      font-size: 0.75rem;
+    }
+    .checkbox {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #b0b8d3;
+      cursor: pointer;
+    }
+    .checkbox input {
+      accent-color: #8aa1d6;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+    .forgot-link {
+      color: #8aa1d6;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .forgot-link:hover {
+      color: #b7c9ff;
+      text-decoration: underline;
+    }
+
+    .btn-login {
+      width: 100%;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      padding: 0.9rem;
+      border-radius: 2rem;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: none;
+      background: linear-gradient(95deg, #8aa1d6, #6c7fc7);
+      box-shadow: 0 8px 18px rgba(106, 130, 190, 0.3);
+      color: #11162e;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      margin-bottom: 1.2rem;
+    }
+    .btn-login:hover {
+      transform: scale(1.02);
+      background: linear-gradient(95deg, #9cb2ea, #7b8ed0);
+      box-shadow: 0 12px 24px rgba(106, 130, 190, 0.5);
+      color: #0a0f24;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 1.2rem 0 1.2rem;
+      color: #8aa1d6;
+      font-size: 0.75rem;
+      gap: 12px;
+    }
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid rgba(138, 161, 214, 0.4);
+    }
+
+    .social-boxes {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin: 0.8rem 0 0.5rem;
+    }
+    .social-box {
+      width: 46px;
+      height: 46px;
+      background: rgba(28, 33, 56, 0.8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      border: 1px solid rgba(138, 161, 214, 0.4);
+    }
+    .social-box i {
+      font-size: 1.4rem;
+      color: #b7c4f0;
+      transition: all 0.2s;
+    }
+    .social-box:hover {
+      transform: translateY(-3px);
+      background: rgba(60, 72, 110, 0.9);
+      border-color: #8aa1d6;
+    }
+    .social-box:hover i {
+      color: #ffffff;
+      text-shadow: 0 0 4px #8aa1d6;
+    }
+
+    .signup-prompt {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      color: #9ba2c7;
+    }
+    .signup-link {
+      color: #8aa1d6;
+      font-weight: 600;
+      text-decoration: none;
+      margin-left: 5px;
+    }
+    .signup-link:hover {
+      text-decoration: underline;
+      color: #b7c9ff;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.7rem;
+      color: #6e77a1;
+      z-index: 10;
+      position: relative;
+      width: 100%;
+    }
+
+    @media (max-width: 500px) {
+      body {
+        padding: 1rem;
+      }
+      .login-card {
+        padding: 1.5rem;
+      }
+      .login-title {
+        font-size: 1.6rem;
+      }
+      .btn-login {
+        padding: 0.75rem;
+      }
+    }
+
+    .login-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .login-card::after {
+      content: '';
+      position: absolute;
+      top: var(--y, 50%);
+      left: var(--x, 50%);
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(138,161,214,0.2) 0%, rgba(138,161,214,0) 70%);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+      border-radius: 50%;
+      z-index: -1;
+    }
+    .login-card:hover::after {
+      opacity: 0.5;
+    }
+    button, .social-box {
+      cursor: pointer;
+    }
+    button:focus-visible, .input-field:focus-visible {
+      outline: 2px solid #8aa1d6;
+      outline-offset: 2px;
+    }
+
+    .toast-message {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(138, 161, 214, 0.25);
+      backdrop-filter: blur(16px);
+      padding: 12px 24px;
+      border-radius: 60px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 0.85rem;
+      color: #f0f3ff;
+      border: 1px solid #8aa1d6;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      z-index: 2000;
+      opacity: 0;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      pointer-events: none;
+      letter-spacing: 0.3px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      white-space: nowrap;
+    }
+    @media (max-width: 550px) {
+      .toast-message {
+        white-space: normal;
+        max-width: 85%;
+        text-align: center;
+        font-size: 0.75rem;
+        padding: 10px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="login-card">
+    <div class="brand-header">
+      <div class="logo-badge">
+        <i class="fas fa-laptop-code logo-icon"></i>
+        <span class="brand-name">DevPros</span>
+      </div>
+      <div class="tagline">pioneering digital excellence</div>
+    </div>
+
+    <div class="login-illustration">
+      <div class="icon-circle">
+        <i class="fas fa-user-astronaut"></i>
+      </div>
+    </div>
+
+    <h2 class="login-title">Welcome back</h2>
+    <div class="login-subtitle">Sign in to access your workspace</div>
+
+    <form id="loginForm">
+      <div class="input-group">
+        <i class="fas fa-envelope"></i>
+        <input type="email" class="input-field" id="emailInput" placeholder=" " required />
+        <label style="position: absolute; left: 2.8rem; top: -8px; font-size: 0.7rem; color: #8aa1d6; background: rgba(18,22,45,0.8); padding: 0 5px; border-radius: 12px; pointer-events: none; transition: 0.2s;">Email address</label>
+      </div>
+      <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" class="input-field" id="passwordInput" placeholder=" " required />
+        <label style="position: absolute; left: 2.8rem; top: -8px; font-size: 0.7rem; color: #8aa1d6; background: rgba(18,22,45,0.8); padding: 0 5px; border-radius: 12px; pointer-events: none;">Password</label>
+      </div>
+
+      <div class="login-options">
+        <label class="checkbox">
+          <input type="checkbox" id="rememberCheck" /> <span>Remember me</span>
+        </label>
+        <a href="#" class="forgot-link" id="forgotLink">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="btn-login" id="loginBtn">
+        <i class="fas fa-arrow-right-to-bracket"></i> Sign In
+      </button>
+    </form>
+
+    <div class="divider">
+      <span>or continue with</span>
+    </div>
+
+    <div class="social-boxes">
+      <div class="social-box" id="googleLogin">
+        <i class="fab fa-google"></i>
+      </div>
+      <div class="social-box" id="instagramLogin">
+        <i class="fab fa-instagram"></i>
+      </div>
+      <div class="social-box" id="facebookLogin">
+        <i class="fab fa-facebook-f"></i>
+      </div>
+    </div>
+
+    <div class="signup-prompt">
+      Don't have an account? <a href="#" class="signup-link" id="signupLink">Create account</a>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 DevPros — Innovate. Create. Secure.
+  </footer>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const emailInput = document.getElementById('emailInput');
+    const passwordInput = document.getElementById('passwordInput');
+    const rememberCheck = document.getElementById('rememberCheck');
+    const loginBtn = document.getElementById('loginBtn');
+
+    function showMessage(message, isSuccess = true) {
+      const existingToast = document.querySelector('.toast-message');
+      if(existingToast) existingToast.remove();
+
+      const toast = document.createElement('div');
+      toast.className = 'toast-message';
+      const bgColor = isSuccess ? 'rgba(98, 201, 148, 0.2)' : 'rgba(233, 124, 124, 0.25)';
+      const borderColor = isSuccess ? '#6fcf97' : '#e97c7c';
+      toast.style.background = bgColor;
+      toast.style.border = `1px solid ${borderColor}`;
+      toast.innerHTML = `<i class="fas ${isSuccess ? 'fa-check-circle' : 'fa-exclamation-triangle'}" style="color: ${borderColor}"></i> ${message}`;
+      document.body.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '1';
+        toast.style.transform = 'translateX(-50%) translateY(0)';
+      }, 10);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(-50%) translateY(20px)';
+        setTimeout(() => toast.remove(), 300);
+      }, 2500);
+    }
+
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      const email = emailInput.value.trim();
+      const password = passwordInput.value.trim();
+
+      if (!email || !password) {
+        showMessage('Please enter both email and password.', false);
+        return;
+      }
+
+      if (!email.includes('@') || !email.includes('.')) {
+        showMessage('Please enter a valid email address.', false);
+        return;
+      }
+
+      if (password.length < 8) {
+        showMessage('Password must be at least 8 characters.', false);
+        return;
+      }
+
+      if (rememberCheck.checked) {
+        localStorage.setItem('devProsEmail', email);
+        localStorage.setItem('devProsRemember', 'true');
+      } else {
+        localStorage.removeItem('devProsEmail');
+        localStorage.removeItem('devProsRemember');
+      }
+
+      sessionStorage.setItem('devProsLoggedIn', 'true');
+      sessionStorage.setItem('devProsUserName', email.split('@')[0]);
+
+      showMessage(`Welcome back, ${email.split('@')[0]}! Redirecting to dashboard...`, true);
+
+      setTimeout(() => {
+        window.location.href = "Devpros.html";
+      }, 1200);
+    }
+
+    if (localStorage.getItem('devProsRemember') === 'true') {
+      const savedEmail = localStorage.getItem('devProsEmail');
+      if (savedEmail) {
+        emailInput.value = savedEmail;
+        rememberCheck.checked = true;
+      }
+    }
+
+    loginForm.addEventListener('submit', handleLoginSubmit);
+
+    document.getElementById('googleLogin').addEventListener('click', () => {
+      showMessage('Google authentication demo — redirecting...', true);
+      setTimeout(() => {
+        window.location.href = "Devpros.html";
+      }, 1000);
+    });
+    document.getElementById('instagramLogin').addEventListener('click', () => {
+      showMessage('Instagram login demo — welcome back!', true);
+      setTimeout(() => {
+        window.location.href = "Devpros.html";
+      }, 1000);
+    });
+    document.getElementById('facebookLogin').addEventListener('click', () => {
+      showMessage('Facebook login demo — secure access', true);
+      setTimeout(() => {
+        window.location.href = "Devpros.html";
+      }, 1000);
+    });
+
+    document.getElementById('forgotLink').addEventListener('click', (e) => {
+      e.preventDefault();
+      showMessage('Password reset link sent to your email (demo).', true);
+    });
+
+    document.getElementById('signupLink').addEventListener('click', (e) => {
+      e.preventDefault();
+      showMessage('Create your DevPros account — feature coming soon!', true);
+    });
+
+    const card = document.querySelector('.login-card');
+    if(card) {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--x', `${x}px`);
+        card.style.setProperty('--y', `${y}px`);
+      });
+    }
+
+    
+        setTimeout(() => {
+          window.location.href = goTo;
+        }, 550);
+  
+    
+  </script>
+</body>
+</html>
